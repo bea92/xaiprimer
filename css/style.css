@@ -1,0 +1,693 @@
+html {
+  background: #fff;
+}
+
+body {
+  background: #fff;
+  font-family: "EB Garamond", serif;
+  color: #3479FF;
+  overflow-x: hidden;
+  z-index: -2;
+}
+
+section {
+  margin-bottom: 3rem;
+  padding-bottom: 5rem;
+}
+
+a, a:visited, a:focus {
+  color: #EA1515;
+}
+
+a:hover {
+  color: #B30000;
+  text-decoration: none;
+}
+
+hr {
+  border-top: 1px solid #0A0101;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.container{
+  width: 90%;
+}
+
+#nav {
+  background: #0A0101;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  flex-wrap: wrap;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+#nav .open {
+  color: snow;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: .5;
+  transition: opacity 0.3s ease;
+}
+
+#nav .open:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+#nav a {
+  color: snow;
+  transition: color 0.2s ease;
+}
+
+#nav a:hover {
+  color: #EA1515;
+  text-decoration: none;
+}
+
+.nav-link {
+  font-family: "Helvetica", sans-serif;
+  margin-right: 3rem;
+  font-weight: 700;
+}
+
+#top {
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  color: #010A0A;
+  font-family: "Helvetica", sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.disabled {
+  display: none;
+}
+
+#sections {
+  position: absolute;
+  top: 0;
+  height: 2rem;
+  background: red;
+  z-index: -1;
+}
+
+#content {
+  z-index: 0;
+}
+
+#intro {
+  padding: 0;
+  margin-bottom: 0rem;
+  border-bottom: 1px solid #0A0101;
+  display: flex;
+  align-items: center;
+  /*background-image: url("../images/artwork.png");*/
+  background-size: 1000px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+}
+
+::selection {
+  background: #EA1515;
+  color: #F9EFE3;
+}
+
+#intro-2 {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #0A0101;
+}
+
+#highlight {
+  overflow-x: hidden;
+}
+
+.citation {
+  font-size: 1.7rem;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 0.5rem;
+}
+
+.navbar {
+  background: #EFE9E7;
+  color: black;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.navbar a {
+  color: #EA1515;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1.5rem;
+  /*font-family: -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  Oxygen-Sans,
+  Ubuntu,
+  Cantarell,
+  "Helvetica Neue",
+  sans-serif;*/
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+h1 {
+  font-size: 5rem;
+  line-height: 0.9;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h6 {
+  letter-spacing: 0;
+}
+
+hr {
+  margin: 2rem 0;
+}
+
+#xai {
+  border:1px solid white;
+  margin-top:2em;
+}
+
+.legend > .desc {
+  padding-right: 1rem;
+}
+
+#legend {
+  margin-top: 4rem;
+}
+
+#legend > * {
+  font-size: 0.9rem;
+}
+
+#legend p, #legend h6 {
+  margin: 0;
+}
+
+#legend p {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+
+.label {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.item{
+  cursor: pointer;
+}
+
+.expl::before {
+  content: "";
+  display: inline-block;
+  width: 3rem;
+  height: 0.6rem;
+  margin-right: 0.5rem;
+  background: linear-gradient(to right, #EA1515,#FFD039);
+}
+
+.sane::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 0.6rem;
+  margin-right: 0.5rem;
+  background: #9fc6c3;
+}
+
+.unclear::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 0.6rem;
+  margin-right: 0.5rem;
+  background: #a6adac;
+}
+
+
+.user::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.5rem;
+  align-items: top;
+  vertical-align: center;
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+
+.event {
+  transition: opacity 0.3s ease;
+  user-select: none;
+  background-color: blue;
+}
+
+.event:hover {
+  cursor: pointer;
+}
+
+.event p {
+  max-width: 80%;
+  position: relative;
+  margin-left: 30%;
+  font-size: 1rem;
+  line-height: 1.3;
+  margin-bottom: 0.2rem;
+}
+
+.event .glyph {
+  position: absolute;
+}
+
+.location {
+  font-style: italic;
+  font-size: 7px;
+}
+
+.event .year {
+  font-weight: bold;
+}
+
+.event .gender {
+  font-weight: bold;
+  float: left;
+  margin-right: 0.5rem;
+}
+
+.state {
+  font-family: "Helvetica";
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#details {
+  min-height: 5rem;
+  transition: all 0.3s ease;
+}
+
+#detCont {
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.sangue {
+  margin: 0 100px 0 100px;
+  height: 100px;
+}
+
+.sangue img {
+  width:100%;
+  height:100%;
+}
+
+svg {
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  shape-rendering: crispEdges;
+}
+
+.domain {
+  stroke: #777;
+  display: none;
+}
+
+.tick text {
+  font-size: 0.7rem;
+  font-family: "Helvetica",
+  sans-serif;
+}
+
+.yAxis .tick line, .xAxis .tick line {
+  stroke-width: 0.5;
+  stroke: #777;
+}
+
+.xAxis .tick line {
+  stroke-dasharray: 2,2;
+}
+
+.timelineAxis .tick line {
+  stroke-dasharray: 2,2;
+  stroke: #777;
+}
+
+.tick text {
+  fill: #777;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.buttons p {
+  margin-right: 0.5rem;
+}
+
+.bloodAxis .tick line, .xAxis .tick line {
+  stroke-width: 1;
+  stroke: #777;
+}
+
+button {
+  background: #F9EFE3;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid rgba(0,0,0,.3);
+  border-radius: 1px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: all 0.3s ease;
+  outline: none;
+  font-family: "Helvetica", sans-serif;
+  font-size: 0.9rem;
+}
+
+button:focus {
+  outline: none;
+}
+
+.circ {
+  transition: opacity 0.3s ease;
+}
+
+
+.circ:hover {
+  cursor: pointer;
+}
+
+.button-label {
+  font-family: "Helvetica", sans-serif;
+  font-size: 0.9rem;
+}
+
+.b_sel {
+  border: 1px solid #0A0101;
+  color: #0A0101;
+}
+
+.b_sel:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.d_sel {
+  border: 1px solid #EA1515;
+  color: #EA1515;
+}
+
+.d_sel:hover {
+  background: rgba(244, 67, 54, 0.3);
+}
+
+.d_del {
+  background: grey;
+  color: white;
+  border: 1px solid rgba(0,0,0,.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: normal;
+}
+
+.selected {
+  color: white;
+}
+
+.source {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+div.tooltip {
+  position: fixed;
+  height: fit-content;
+  border-radius: 10px;
+  padding:10px;
+  bottom: 3rem;
+  left: 3rem;
+  opacity: 0;
+  border:1px solid black;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background-color: white;
+}
+
+div.tooltip p{
+  margin-right: 0.2rem;
+  line-height: 1.3;
+  text-transform: lowercase;
+  font-size: 1rem;
+  transition: .3s ease;
+  display: inline-block;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.info {
+  fill: black;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.date {
+  font-weight: bold;
+}
+
+#killingbees-ui {
+  margin-bottom: 1rem;
+}
+
+#killingbees svg {
+  overflow-x: hidden;
+}
+
+#footer {
+  margin-bottom: 5rem;
+}
+
+#footer .col-4 {
+  border-radius: 2px;
+  color: #0A0101;
+  padding: 1rem;
+}
+
+/* Mappa */
+
+#map {
+  margin-top: 4rem;
+}
+
+#map svg{
+  border-top: 1px solid #9fc6c3;
+  border-bottom: 1px solid #9fc6c3;
+  cursor: move;
+}
+
+.mapTooltip {
+  position: absolute;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  width: 13rem;
+  pointer-events: none;
+}
+
+.mapTooltip p {
+  font-size: 0.95rem;
+  margin: 0.2rem;
+}
+
+.states {
+  fill: #F9EFE3;
+  stroke: #9fc6c3;
+}
+
+.mapCircle {
+  stroke-width: 1;
+}
+
+.mapCircle:hover {
+  cursor: pointer;
+}
+
+#map .date {
+  font-size: 1.6rem;
+}
+
+.tip {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 0.8rem;
+  color: rgba(0,0,0,.5);
+}
+
+.description {
+  color: rgba(0,0,0,.5);
+}
+
+.bills-tooltip p {
+  font-size: 0.98rem;
+}
+
+.code {
+  font-size: 1.2rem !important;
+  font-weight: bold;
+}
+
+.active {
+  cursor: pointer;
+}
+
+.bills {
+  transition: all 0.3s;
+}
+
+.bills:hover {
+  cursor: pointer;
+}
+
+.mucchi {
+  margin-top: 2rem;
+  border-bottom: 1px solid #010A0A;
+}
+
+.mucchi img {
+  margin-top: 1rem;
+}
+
+.mucchi > div {
+  text-align: center;
+}
+
+.mucchi p {
+  margin-bottom: 0;
+  font-family: "Helvetica", sans-serif;
+  font-weight: bold;
+  line-height: 1.1;
+  font-size: 1rem;
+  letter-spacing: -1px;
+}
+
+.KPI {
+  font-size: 3rem !important;
+}
+
+.total {
+  opacity: 0.4;
+}
+
+/* LOADER */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3,3);
+    opacity: 0;
+  }
+}
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: #0A0101;
+}
+
+.dot-a {
+  background: #F9EFE3;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 49%;
+  left: 49%;
+  animation: 1s pulse ease-out infinite;
+}
+
+#alert {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #F9EFE3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#alert > * {
+  width: 50vw;
+  font-size: 1.6rem;
+}
+
+@media only screen and (max-width : 1224px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+}
+
+@media only screen and (max-width : 768px) {
+  #nav {
+    display: none;
+  }
+
+  .citation {
+    font-size: 1.3rem;
+  }
+
+  #detCont {
+    position: fixed;
+    bottom: 0;
+    left: 5%;
+  }
+}
