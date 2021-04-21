@@ -169,7 +169,7 @@ let data = d3.tsv("data/glyphs.tsv").then(function (data) {
     .attr("d", d3.geoPath())
     .attr("stroke", (d) => veri(d.value))
     .attr("stroke-width", "0.2px")
-    .attr("opacity", 1);
+    .attr("opacity", 1)
 
   let g = svg
     .append("g")
@@ -179,11 +179,19 @@ let data = d3.tsv("data/glyphs.tsv").then(function (data) {
     .selectAll("g")
     .data(dataFixed);
 
+    svg.append("text")
+.attr("x", 10)
+.attr("y", 10)
+.attr("text", "ciao");
+
+
   g = g
     .enter()
     .append("g")
     .classed("glyph", true)
     .attr("transform", (d) => `translate(${d.x},${d.y})`);
+
+
 
   g.append("rect")
     .classed("item", true)
@@ -208,7 +216,7 @@ let data = d3.tsv("data/glyphs.tsv").then(function (data) {
       div.transition().duration(100).style("opacity", 1);
       div
         .html(
-          "<h4>" + d.title + "</h4>" + "</br>" + d.format + "</br>" + d.focus
+          "<h4>" + d.title + "</h4>" +  "<strong> FORMAT </strong> " + "</br>" + d.format + "</br>" + "<strong> TACTICS </strong> " + "</br>" + "<h6>" + d.focus + "</h6>"
         )
         .style("left", d3.event.pageX + "px")
         .style("top", d3.event.pageY - 28 + "px");

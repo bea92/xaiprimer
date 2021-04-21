@@ -1,13 +1,14 @@
-
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,300;0,400;0,500;1,300;1,400;1,500&family=IBM+Plex+Serif:ital,wght@0,100;0,400;0,500;1,300;1,400&display=swap");
 
 html {
   background: #fff;
+  font-family: "IBM Plex", sans-serif;
 }
 
 body {
   background: #fff;
-  font-family: "EB Garamond", serif;
-  color: #3479FF;
+  font-family: "IBM Plex", sans-serif;
+  color: black;
   overflow-x: hidden;
   z-index: -2;
 }
@@ -17,133 +18,92 @@ section {
   padding-bottom: 5rem;
 }
 
-a, a:visited, a:focus {
-  color: #EA1515;
+a,
+a:visited,
+a:focus {
+  color: #ea1515;
 }
 
 a:hover {
-  color: #B30000;
+  color: #b30000;
   text-decoration: none;
 }
 
 hr {
-  border-top: 1px solid #0A0101;
+  border-top: 1px solid #0a0101;
 }
 
 .container-fluid {
   padding: 0;
 }
 
-.container{
+.container {
   width: 90%;
 }
 
 /* Style the buttons that are used to open and close the accordion panel */
 
-button p{
+button p {
   text-transform: uppercase;
 }
 
-
 button.accordion {
   background-color: #fff;
-  color: #3479FF;
+  color: #3479ff;
   cursor: pointer;
   padding: 10px;
   width: 500px;
-  height:40px;
-  text-align: center;   
-  border:1px solid black;
+  height: 40px;
+  text-align: center;
+  border: 1px solid black;
   outline: none;
   transition: 0.4s;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-button.accordion.active, button.accordion:hover {
-  background-color: #3479FF;
+button.accordion.active,
+button.accordion:hover {
+  background-color: #3479ff;
   color: #fff;
-  border:1px solid black;
+  border: 1px solid black;
 }
 
 /* Style the accordion panel. Note: hidden by default */
 
 .panel {
   padding: 20px 50px;
-  width:500px;
+  width: 500px;
   position: absolute;
   background-color: white;
   opacity: 0.9;
+  font-family: "IBM Plex", sans-serif;
   display: none;
   transition: 0.4s;
   backdrop-filter: blur(4px);
-  border:1px solid black;
+  border: 1px solid black;
 }
 
 /* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
 div.panel.show {
-  display: block !important
-
+  display: block !important;
 }
 
-img{
-transition: 0.4s;
-width:400px;
+img {
+  transition: 0.4s;
+  width: 400px;
 }
 
-.user{
-border-radius: 10px;
-}
-
-#nav {
-  background: #0A0101;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  flex-wrap: wrap;
-  top: 0;
-  width: 100%;
-  z-index: 9999;
-}
-
-#nav .open {
-  color: snow;
-  font-family: "Helvetica", "Arial", sans-serif;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  opacity: .5;
-  transition: opacity 0.3s ease;
-}
-
-#nav .open:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-#nav a {
-  color: snow;
-  transition: color 0.2s ease;
-}
-
-#nav a:hover {
-  color: #EA1515;
-  text-decoration: none;
-}
-
-.nav-link {
-  font-family: "Helvetica", sans-serif;
-  margin-right: 3rem;
-  font-weight: 700;
+.user {
+  border-radius: 10px;
 }
 
 #top {
   position: fixed;
   bottom: 0.5rem;
   right: 0.5rem;
-  color: #010A0A;
-  font-family: "Helvetica", sans-serif;
-  font-weight: bold;
+  color: #010a0a;
+  font-family: "IBM Plex", sans-serif;
+  font-weight: lighter;
   font-size: 0.8rem;
   text-align: center;
   padding: 1rem;
@@ -168,24 +128,23 @@ border-radius: 10px;
 #intro {
   padding: 0;
   margin-bottom: 0rem;
-  border-bottom: 1px solid #0A0101;
+  border-bottom: 1px solid #0a0101;
   display: flex;
   align-items: center;
-  /*background-image: url("../images/artwork.png");*/
   background-size: 1000px;
   background-position: bottom right;
   background-repeat: no-repeat;
 }
 
 ::selection {
-  background: #EA1515;
-  color: #F9EFE3;
+  background: #ea1515;
+  color: #f9efe3;
 }
 
 #intro-2 {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #0A0101;
+  border-bottom: 1px solid #0a0101;
 }
 
 #highlight {
@@ -211,51 +170,59 @@ li {
 }
 
 .navbar {
-  background: #EFE9E7;
+  background: #efe9e7;
   color: black;
-  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .navbar a {
-  color: #EA1515;
+  color: #ea1515;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: 1.5rem;
-  /*font-family: -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Roboto,
-  Oxygen-Sans,
-  Ubuntu,
-  Cantarell,
-  "Helvetica Neue",
-  sans-serif;*/
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "IBM Plex", sans-serif;
   font-weight: 700;
-  letter-spacing: -1px;
+  line-height: 1em;
 }
 
 h1 {
-  font-size: 5rem;
-  line-height: 0.9;
+  font-size: 3rem;
 }
 
 h2 {
   font-size: 3rem;
 }
 
-h6 {
+h4 {
+  font-size: 1rem;
+  font-family: "IBM Plex Serif", sans-serif;
+  font-weight: 700;
+  font-style: italic;
   letter-spacing: 0;
 }
 
-hr {
-  margin: 2rem 0;
+h6 {
+  font-size: 0.9rem;
+  color:white;
+  font-family: "IBM Plex", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  padding:5px;
+  line-height: 1em;
+  background-color:red;
+  border-radius: 100px;
 }
 
 #xai {
-  border:1px solid white;
-  margin-top:2em;
+  border: 1px solid white;
+  margin-top: 2em;
 }
 
 .legend > .desc {
@@ -270,7 +237,8 @@ hr {
   font-size: 0.9rem;
 }
 
-#legend p, #legend h6 {
+#legend p,
+#legend h6 {
   margin: 0;
 }
 
@@ -279,17 +247,15 @@ hr {
   margin-right: 0.5rem;
 }
 
-
 .label {
   font-family: sans-serif;
   font-weight: bold;
   font-size: 0.8rem;
 }
 
-.item{
+.item {
   cursor: pointer;
 }
-
 
 .event {
   transition: opacity 0.3s ease;
@@ -351,8 +317,8 @@ hr {
 }
 
 .sangue img {
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
 }
 
 svg {
@@ -373,21 +339,21 @@ svg {
 
 .tick text {
   font-size: 0.7rem;
-  font-family: "Helvetica",
-  sans-serif;
+  font-family: "Helvetica", sans-serif;
 }
 
-.yAxis .tick line, .xAxis .tick line {
+.yAxis .tick line,
+.xAxis .tick line {
   stroke-width: 0.5;
   stroke: #777;
 }
 
 .xAxis .tick line {
-  stroke-dasharray: 2,2;
+  stroke-dasharray: 2, 2;
 }
 
 .timelineAxis .tick line {
-  stroke-dasharray: 2,2;
+  stroke-dasharray: 2, 2;
   stroke: #777;
 }
 
@@ -406,15 +372,16 @@ svg {
   margin-right: 0.5rem;
 }
 
-.bloodAxis .tick line, .xAxis .tick line {
+.bloodAxis .tick line,
+.xAxis .tick line {
   stroke-width: 1;
   stroke: #777;
 }
 
 button {
-  background: #F9EFE3;
+  background: #f9efe3;
   padding: 0.2rem 0.5rem;
-  border: 1px solid rgba(0,0,0,.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 1px;
   cursor: pointer;
   margin-right: 0.5rem;
@@ -432,7 +399,6 @@ button:focus {
   transition: opacity 0.3s ease;
 }
 
-
 .circ:hover {
   cursor: pointer;
 }
@@ -443,8 +409,8 @@ button:focus {
 }
 
 .b_sel {
-  border: 1px solid #0A0101;
-  color: #0A0101;
+  border: 1px solid #0a0101;
+  color: #0a0101;
 }
 
 .b_sel:hover {
@@ -452,8 +418,8 @@ button:focus {
 }
 
 .d_sel {
-  border: 1px solid #EA1515;
-  color: #EA1515;
+  border: 1px solid #ea1515;
+  color: #ea1515;
 }
 
 .d_sel:hover {
@@ -463,7 +429,7 @@ button:focus {
 .d_del {
   background: grey;
   color: white;
-  border: 1px solid rgba(0,0,0,.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -487,23 +453,23 @@ div.tooltip {
   position: fixed;
   height: fit-content;
   border-radius: 10px;
-  padding:10px;
+  padding: 10px;
   bottom: 3rem;
   left: 3rem;
   opacity: 0;
-  border:1px solid black;
+  border: 1px solid black;
   transition: all 0.3s ease;
   pointer-events: none;
   background-color: white;
   max-width: 200px;
 }
 
-div.tooltip p{
+div.tooltip p {
   margin-right: 0.2rem;
   line-height: 1.3;
   text-transform: uppercase;
   font-size: 1rem;
-  transition: .3s ease;
+  transition: 0.3s ease;
   display: inline-block;
   font-family: "Helvetica", "Arial", sans-serif;
 }
@@ -532,7 +498,7 @@ div.tooltip p{
 
 #footer .col-4 {
   border-radius: 2px;
-  color: #0A0101;
+  color: #0a0101;
   padding: 1rem;
 }
 
@@ -542,7 +508,7 @@ div.tooltip p{
   margin-top: 4rem;
 }
 
-#map svg{
+#map svg {
   border-top: 1px solid #9fc6c3;
   border-bottom: 1px solid #9fc6c3;
   cursor: move;
@@ -562,7 +528,7 @@ div.tooltip p{
 }
 
 .states {
-  fill: #F9EFE3;
+  fill: #f9efe3;
   stroke: #9fc6c3;
 }
 
@@ -581,11 +547,11 @@ div.tooltip p{
 .tip {
   font-family: "Helvetica", "Arial", sans-serif;
   font-size: 0.8rem;
-  color: rgba(0,0,0,.5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .description {
-  color: rgba(0,0,0,.5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .bills-tooltip p {
@@ -611,7 +577,7 @@ div.tooltip p{
 
 .mucchi {
   margin-top: 2rem;
-  border-bottom: 1px solid #010A0A;
+  border-bottom: 1px solid #010a0a;
 }
 
 .mucchi img {
@@ -645,7 +611,7 @@ div.tooltip p{
     opacity: 1;
   }
   100% {
-    transform: scale(3,3);
+    transform: scale(3, 3);
     opacity: 0;
   }
 }
@@ -657,11 +623,11 @@ div.tooltip p{
   width: 100%;
   height: 100%;
   z-index: 99999;
-  background: #0A0101;
+  background: #0a0101;
 }
 
 .dot-a {
-  background: #F9EFE3;
+  background: #f9efe3;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -677,7 +643,7 @@ div.tooltip p{
   top: 0;
   width: 100%;
   height: 100%;
-  background: #F9EFE3;
+  background: #f9efe3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -688,14 +654,13 @@ div.tooltip p{
   font-size: 1.6rem;
 }
 
-@media only screen and (max-width : 1224px) {
+@media only screen and (max-width: 1224px) {
   body {
     font-size: 0.9rem;
   }
-
 }
 
-@media only screen and (max-width : 768px) {
+@media only screen and (max-width: 768px) {
   #nav {
     display: none;
   }
@@ -710,5 +675,3 @@ div.tooltip p{
     left: 5%;
   }
 }
-
-
