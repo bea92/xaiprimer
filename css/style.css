@@ -1,3 +1,5 @@
+
+
 html {
   background: #fff;
 }
@@ -34,6 +36,62 @@ hr {
 
 .container{
   width: 90%;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+
+button p{
+  text-transform: uppercase;
+}
+
+
+button.accordion {
+  background-color: #fff;
+  color: #3479FF;
+  cursor: pointer;
+  padding: 10px;
+  width: 500px;
+  height:40px;
+  text-align: center;   
+  border:1px solid black;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+  background-color: #3479FF;
+  color: #fff;
+  border:1px solid black;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+
+.panel {
+  padding: 20px 50px;
+  width:500px;
+  position: absolute;
+  background-color: white;
+  opacity: 0.9;
+  display: none;
+  transition: 0.4s;
+  backdrop-filter: blur(4px);
+  border:1px solid black;
+}
+
+/* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
+div.panel.show {
+  display: block !important
+
+}
+
+img{
+transition: 0.4s;
+width:400px;
+}
+
+.user{
+border-radius: 10px;
 }
 
 #nav {
@@ -230,46 +288,6 @@ hr {
 
 .item{
   cursor: pointer;
-}
-
-.expl::before {
-  content: "";
-  display: inline-block;
-  width: 3rem;
-  height: 0.6rem;
-  margin-right: 0.5rem;
-  background: linear-gradient(to right, #EA1515,#FFD039);
-}
-
-.sane::before {
-  content: "";
-  display: inline-block;
-  width: 1rem;
-  height: 0.6rem;
-  margin-right: 0.5rem;
-  background: #9fc6c3;
-}
-
-.unclear::before {
-  content: "";
-  display: inline-block;
-  width: 1rem;
-  height: 0.6rem;
-  margin-right: 0.5rem;
-  background: #a6adac;
-}
-
-
-.user::before {
-  content: "";
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-right: 0.5rem;
-  align-items: top;
-  vertical-align: center;
-  background-color: #000000;
-  border-radius: 10px;
 }
 
 
@@ -477,12 +495,13 @@ div.tooltip {
   transition: all 0.3s ease;
   pointer-events: none;
   background-color: white;
+  max-width: 200px;
 }
 
 div.tooltip p{
   margin-right: 0.2rem;
   line-height: 1.3;
-  text-transform: lowercase;
+  text-transform: uppercase;
   font-size: 1rem;
   transition: .3s ease;
   display: inline-block;
@@ -691,3 +710,5 @@ div.tooltip p{
     left: 5%;
   }
 }
+
+

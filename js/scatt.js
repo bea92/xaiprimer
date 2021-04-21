@@ -1,56 +1,54 @@
-const margin = { top: 20, right: 20, bottom: 30, left: 50 },
-  width = 1500,
-  height = 700 - margin.top - margin.bottom;
+const margin = { top: 100, right: 50, bottom: 100, left: 50 },
+  width = 1920,
+  height = 1000 - margin.top - margin.bottom;
 
 // set the ranges
 const x = d3.scaleLinear().range([0, width]);
 const y = d3.scaleLinear().range([height, 0]);
 
+const r = 10;
+const collisionR = -r / 5;
 // define the size
-const sizeValue = (d) => d.medium;
+const sizeMedium = (d) => +d.medium;
+
+// define the width size
+const sizeExpl = (d) => +d.explanation;
+
+// define maxHeight glyphs
+const sizeGlyph = (d) => +(sizeMedium(d) + sizeExpl(d) + 1.5);
 
 // define the color
-const colorValue = (d) => d.explanation;
-
-// define the color
-const colorValue2 = (d) => d.format;
-
-console.log(colorValue2)
+const colorValue = (d) => d.scenario;
 
 // define users
-const usersValue = (d) => +d.user;
+
+// define path
+const path = (d) => d.path;
+
+// define tasks
+const tasks = (d) => d.task;
 
 // Scale the range of the data
-const sizeScale = d3.scaleSqrt().range([0, 6]);
+const sizeScale = d3.scaleLinear().range([5, 10]);
 
-let color = d3
+const sizePath = d3
   .scaleOrdinal()
-  .domain(["ZERO", "ONE", "TWO", "THREE", "FOUR"])
-  .range(["transparent", "#FFD039", "#FFB237", "#FF9535", "#EA1515"]);
+  .domain(["Linear", "Iterative"])
+  .range(["0.2px", "0.5px"]);
 
-let color2 = d3.scaleOrdinal()
-  .range(["#EA1515","#9fc6c3","#FFFFFF","#a6adac", "#FF5500"]);
+const dashStroke = d3
+  .scaleOrdinal()
+  .domain(["Guided", "Open Ended"])
+  .range(["0.5", "1"]);
 
-let veri = d3.scaleOrdinal().domain(["0", "1"]).range(["#000", "#ddd"]);
-
-const radians = 0.0174532925;
-
-let orbitRadius = d3
-  .scaleLinear()
-  .domain([0, 8]) //number of planets
-  .range([90, 45]); //you may need adjust this later
-
-let angle = d3
-  .scaleLinear()
-  .domain([0, 9]) //number of planets + 1
-  .range([0, 360]); //you may need adjust this late
-
-let div = d3.select("body").append("div")	
-  .attr("class", "tooltip")				
+let div = d3
+  .select("body")
+  .append("div")
+  .attr("class", "tooltip")
   .style("opacity", 0);
 
 // Get the data
-d3.tsv("data/glyphs.tsv").then(function (data) {
+let data = d3.tsv("data/glyphs.tsv").then(function (data) {
   // format the data
   data.forEach(function (d) {
     d.x = +d.x;
@@ -76,95 +74,337 @@ d3.tsv("data/glyphs.tsv").then(function (data) {
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .call(
+      d3.zoom().on("zoom", function () {
+        svg.attr("transform", d3.event.transform);
+      })
+    )
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  const dataFixed = data.map((d) => ({
+    px: d.x,
+    py: d.y,
+    title: d.title,
+    size: (d.medium + d.explanation) / 3,
+    tour: d.tour,
+    path: d.path,
+    scenario: d.scenario,
+    task: d.task,
+    explanation: d.explanation,
+    medium: d.medium,
+    user: +d.user,
+    format: d.format,
+    focus: d.focus,
+  }));
 
-// compute the density data
-  var densityData = d3.contourDensity()
-  .x(function(d) { return x(d.x); })   // x and y = column name in .csv input data
-  .y(function(d) { return y(d.y); })
-  .size([width, height])
-  .bandwidth(20)    // smaller = more precision in lines = more lines
-  (data)
+  // define the color
 
-// Add the contour: several "path"
-svg
-  .selectAll("path")
-  .data(densityData)
-  .enter()
-  .append("path")
-    .attr("d", d3.geoPath())
-    .attr("fill", "none")
-    .attr("stroke", "black")
-    .attr("stroke-linejoin", "round")
-    .attr("stroke-width", 0.4)
-    .attr("opacity", .8)
+  const color = d3
+    .scaleOrdinal()
+    .domain(["desktop", "exhibition", "multiple"])
+    .range(["#FFD039", "#FFB237", "#EA1515"]);
+  // Scale the range of the data
+  const sizeScale = d3.scaleLinear().range([0, 3]);
+  const colorC = d3.scaleSequential(d3.interpolateRdBu).domain([-1, 1]);
 
-  // disegno delle linee per il numero di armi utilizzate
+  const sizePath = d3
+    .scaleOrdinal()
+    .domain(["Linear", "Iterative"])
+    .range(["0.2px", "1px"]);
 
+  let veri = d3.scaleOrdinal().domain(["0", "1"]).range(["#fff", "#3479FF"]);
+
+  let r = 20;
+  let collisionR = r / 3;
+
+  const simulation = d3
+    .forceSimulation(dataFixed)
+    .force(
+      "x",
+      d3.forceX((d) => x(d.px))
+    )
+    .force(
+      "y",
+      d3.forceY((d) => y(d.py))
+    )
+    .force("collide", d3.forceCollide(r + collisionR).iterations(10));
+
+  // Run the simulation for 100 steps
+  for (let i = 2; i < 100; i++) simulation.tick();
+  simulation.stop();
+
+  // compute the density data
+  var densityData = d3
+    .contourDensity()
+    .x(function (d) {
+      return x(d.x);
+    }) // x and y = column name in .csv input data
+    .y(function (d) {
+      return y(d.y);
+    })
+    .size([width, height])
+    .bandwidth(50)(
+    // smaller = more precision in lines = more lines
+    data
+  );
+
+  // add value for coloring contourplot
+
+  value = (x, y) =>
+    (1 +
+      (x + y + 1) ** 2 *
+        (19 - 14 * x + 3 * x ** 2 - 14 * y + 6 * x * y + 3 * y ** 2)) *
+    (30 +
+      (2 * x - 3 * y) ** 2 *
+        (18 - 32 * x + 12 * x * x + 48 * y - 36 * x * y + 27 * y ** 2));
+
+  // Add the contour: several "path"
   svg
-    .selectAll("circle")
-    .data(data)
+    .selectAll("path")
+    .data(densityData)
+    .enter()
+    .append("path")
+    .attr("fill", "white")
+    .attr("d", d3.geoPath())
+    .attr("stroke", (d) => veri(d.value))
+    .attr("stroke-width", "0.2px")
+    .attr("opacity", 1);
+
+  let g = svg
+    .append("g")
+    .attr("stroke-width", 1.5)
+    .attr("font-family", "serif")
+    .attr("font-size", 10)
+    .selectAll("g")
+    .data(dataFixed);
+
+  g = g
     .enter()
     .append("g")
+    .classed("glyph", true)
+    .attr("transform", (d) => `translate(${d.x},${d.y})`);
+
+  g.append("rect")
     .classed("item", true)
-    .append("circle")
-    .attr("r", (d) => sizeScale(sizeValue(d)))
-    .attr("fill", (d) => color(colorValue(d)))
-    .attr("cx", (d) => x(d.x))
-    .attr("cy", (d) => y(d.y))
-    .on("mouseover", function(d) {		
-        div.transition()		
-            .duration(200)		
-            .style("opacity", .9);		
-        div	.html((d.title) + "</br>" + (d.venue) + "</br>" + (d.format))
-            .style("left", (d3.event.pageX) + "px")		
-            .style("top", (d3.event.pageY - 28) + "px");	
-        })					
-    .on("mouseout", function(d) {		
-        div.transition()		
-            .duration(500)		
-            .style("opacity", 0);	
-    });;
-
-  d3.selectAll(".item")
-    .append("circle")
-    .classed("veri", true)
-    .attr("display", "block")
-    .attr("r", (d) => sizeScale(sizeValue(d)) + 3)
-    .attr("fill", "none")
-    .attr("stroke", (d) => veri(colorValue(d)))
-    .attr("cx", (d) => x(d.x))
-    .attr("cy", (d) => y(d.y));
-
-  d3.selectAll(".item")
-    .append("text")
-    .classed("location", true)
-    .attr("x", (d) => x(d.x) - 30)
-    .attr("y", (d) => y(d.y) + 8)
-    .text(function (d) {
-      return d.format;
+    .attr("width", "40px")
+    .attr("height", function (d) {
+      if (d.medium <= d.explanation) {
+        return sizeScale(d.explanation) + 15;
+      } else if (d.medium >= d.explanation) {
+        return sizeScale(d.medium) + 15;
+      } else if (d.medium === d.explanation) {
+        return sizeScale(d.medium) + 15;
+      } else {
+        return sizeScale(d.medium) + 15;
+      }
+    })
+    .attr("fill", "white")
+    .attr("stroke", "black")
+    .attr("stroke-width", function (d) {
+      return sizePath(d.path);
+    })
+    .on("mouseover", function (d) {
+      div.transition().duration(100).style("opacity", 1);
+      div
+        .html(
+          "<h4>" + d.title + "</h4>" + "</br>" + d.format + "</br>" + d.focus
+        )
+        .style("left", d3.event.pageX + "px")
+        .style("top", d3.event.pageY - 28 + "px");
+      this.parentNode.parentNode.appendChild(this.parentNode); //the path group is on the top with in its parent group
+      this.parentNode.parentNode.parentNode.appendChild(
+        this.parentNode.parentNode
+      );
+      d3.select(this).transition().duration(300).style("fill", "#3479FF");
+    })
+    .on("mouseout", function (d) {
+      div.transition().duration(200).style("opacity", 0);
+      d3.select(this).transition().duration(300).style("fill", "white");
     });
 
-    var r = 200,
-    w = r * 3,
-    h = w,
-    rad = Math.PI/180,
-    interval = 360/data.length;
-    
-  d3.selectAll(".item").each(function (d) {
+  // TASKS
+
+  // understanding
+
+  g.append("rect")
+    .classed("understanding", true)
+    .attr("display", "block")
+    .attr("width", "10px")
+    .attr("height", "2px")
+    .style("fill", function (d) {
+      if (d.task === "Understanding") {
+        return "black";
+      } else if (d.task === "Understanding,Diagnosis,Refinement") {
+        return "black";
+      } else if (d.task === "Understanding,Diagnosis") {
+        return "black";
+      } else if (d.task === "Understanding,Refinement") {
+        return "black";
+      } else {
+        return "white";
+      }
+    })
+    .attr("stroke", "black")
+    .attr("stroke-width", "0.2px")
+    .attr("transform", (d) => "translate(" + [5, d.size / 6 + 5] + ")");
+
+  // diagnosis
+  g.append("rect")
+    .classed("diagnosis", true)
+    .attr("display", "block")
+    .attr("width", "10px")
+    .attr("height", "2px")
+    .style("fill", function (d) {
+      if (d.task === "Diagnosis") {
+        return "black";
+      } else if (d.task === "Understanding,Diagnosis,Refinement") {
+        return "black";
+      } else if (d.task === "Understanding,Diagnosis") {
+        return "black";
+      } else if (d.task === "Diagnois,Refinement") {
+        return "black";
+      } else {
+        return "white";
+      }
+    })
+    .attr("stroke", "black")
+    .attr("stroke-width", "0.2px")
+    .attr("transform", (d) => "translate(" + [15, d.size / 6 + 5] + ")");
+
+  // refinement
+  g.append("rect")
+    .classed("refinement", true)
+    .attr("display", "block")
+    .attr("width", "10px")
+    .attr("height", "2px")
+    .style("fill", function (d) {
+      if (d.task === "Refinement") {
+        return "black";
+      } else if (d.task === "Understanding,Refinement") {
+        return "black";
+      } else if (d.task === "Understanding,Diagnosis,Refinement") {
+        return "black";
+      } else if (d.task === "Diagnois,Refinement") {
+        return "black";
+      } else {
+        return "white";
+      }
+    })
+    .attr("stroke", "black")
+    .attr("stroke-width", "0.2px")
+    .attr("transform", (d) => "translate(" + [25, d.size / 6 + 5] + ")");
+
+  // EXPLANATION
+
+  g.append("rect")
+    .classed("expl-block", true)
+    .attr("display", "block")
+    .attr("width", "15px")
+    .attr("height", function (d) {
+      return sizeScale(d.explanation);
+    })
+    .attr("fill", "#eee")
+    .attr("stroke", "black")
+    .attr("stroke-width", "0.2px")
+    .attr("transform", (d) => "translate(" + [5, 8 + d.size / 6] + ")");
+
+  d3.selectAll(".glyph").each(function (d) {
+    const thisExpl = d3.select(this).append("svg");
+    for (let i = 1; i <= d.explanation; i++) {
+      thisExpl
+        .append("rect")
+        .classed("grid", true)
+        .attr("transform", (d) => "translate(" + [5, 8 + d.size / 6] + ")")
+        .attr("y", function (d) {
+          return i * 3;
+        })
+        .attr("width", "15px")
+        .attr("height", "0.01px")
+        .attr("fill", "none")
+        .attr("stroke-width", ".2")
+        .attr("stroke", "#0A0101")
+        .attr("opacity", ".1");
+    }
+  });
+
+  //MEDIUM
+
+  g.append("rect")
+    .classed("medium-block", true)
+    .attr("display", "block")
+    .attr("width", "15px")
+    .attr("height", function (d) {
+      return sizeScale(d.medium);
+    })
+    .attr("fill", function (d) {
+      return color(d.scenario);
+    })
+    .attr("stroke", "black")
+    .attr("stroke-width", "0.2px")
+    .attr("transform", (d) => "translate(" + [20, 8 + d.size / 6] + ")");
+
+  d3.selectAll(".glyph").each(function (d) {
+    const thisMedium = d3.select(this).append("svg");
+    for (let i = 1; i <= d.medium; i++) {
+      thisMedium
+        .append("rect")
+        .classed("grid", true)
+        .attr("transform", (d) => "translate(" + [20, 8 + d.size / 6] + ")")
+        .attr("y", function (d) {
+          return i * 3;
+        })
+        .attr("width", "15px")
+        .attr("height", "0.01px")
+        .attr("fill", "none")
+        .attr("stroke-width", ".2")
+        .attr("stroke", "#0A0101")
+        .attr("opacity", ".1");
+    }
+  });
+
+  // tour
+
+  g.append("rect")
+    .classed("tour", true)
+    .attr("display", "block")
+    .attr("width", "40px")
+    .attr("height", "2px")
+    .attr("fill", function (d) {
+      if (d.tour === "Guided") {
+        return "black";
+      } else return "white";
+    })
+    .attr("stroke", "black")
+    .attr("stroke-width", "0.2px");
+
+  // add users
+
+  d3.selectAll(".glyph").each(function (d) {
     const thisSvg = d3.select(this).append("svg");
 
-    for (let i = 1; i <= +d.user; i++) {
+    for (let i = 1; i <= d.user; i++) {
       thisSvg
         .append("circle")
-        .attr("cx", (d) => x(d.x) + i*3)
-        .attr("cy", (d) => y(d.y) + i*3)
-        .attr("r", "1px")
+        .classed("user", true)
+        .attr("cx", function (d) {
+          return 10 + i * 5;
+        })
+        .attr("cy", function (d) {
+          if (d.medium <= d.explanation) {
+            return sizeScale(d.explanation) + 15;
+          } else if (d.medium >= d.explanation) {
+            return sizeScale(d.medium) + 15;
+          } else if (d.medium === d.explanation) {
+            return sizeScale(d.medium) + 15;
+          } else {
+            return sizeScale(d.medium) + 15;
+          }
+        })
+        .attr("r", "1.5px")
         .attr("fill", "black")
-        .attr("stroke", "#0A0101")
-        .attr("stroke-width", 1.5)
+        .attr("stroke-width", ".5")
+        .attr("stroke", "#0A0101");
     }
   });
 

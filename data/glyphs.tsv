@@ -1,5 +1,5 @@
 ID	venue	format	title	focus	x	y	user	medium	explanation	tour	path	verifiction	data	scenario	task
-R02	NONE	Guidelines	DALEX	platform	-19.10070494	-12.03658715	1	2	0	-	Iterative	0	0	-	-
+R02	NONE	Guidelines	DALEX	platform	-19.10070494	-12.03658715	1	2	2	Guided	Iterative	0	0	Desktop	Understanding
 P01	DISTILL	Interactive Article	Understanding RL Vision	model	24.31574747	-2.726596506	1	3	3	Guided	Linear	1	3	Desktop	Understanding
 P02	DISTILL	Interactive Article	Exploring Bayesian Optimization	model	5.384230824	-11.49022523	1	1	2	Guided	Linear	1	3	Desktop	Diagnosis
 P03	DISTILL	Interactive Article	Computing Receptive Fields	model	3.079591723	-12.6469349	1	1	1	Guided	Linear	1	3	Desktop	Diagnosis
@@ -41,9 +41,9 @@ P57	VISXAI	-	What is Bayesian Knowledge Tracing?	model	-2.901863365	-2.510848911
 P58	VISXAI	Scrollytelling Story	La Historia. Buscando um restaurante	model	11.77274439	0.2205809045	1	2	2	Guided	Linear	1	2	Desktop	Diagnosis
 P60	VISXAI	Interactive Article	Explainability for One Dimensional Temporal Inputs of DL Models	model	9.279763432	7.77190551	1	1	1	Guided	Linear	1	2	Desktop	Diagnosis
 P61	VISXAI	Interactive Article	Active Learning: A Visual Tour	model	6.549604149	8.08765754	1	2	2	Guided	Linear	1	2	Desktop	Understanding
-P62	VISXAI	-	What does BERT dream of?	model	8.030986996	8.466990082	0	1	1	Guided	Linear	1	2	Desktop	Understanding
+P62	VISXAI	-	What does BERT dream of?	model	8.030986996	8.466990082	1	1	1	Guided	Linear	1	2	Desktop	Understanding
 P63	VISXAI	Tool	A Gentle Introduction to Anomaly Detection with Autoencoders	model	10.81991884	-21.4304184	1	1	1	Open Ended	Linear	1	3	Desktop	Diagnosis
-P64	VISXAI	-	How can we know what people know?	model	7.738089294	9.484210579	0	3	3	Guided	Linear	1	1	Desktop	Understanding
+P64	VISXAI	-	How can we know what people know?	model	7.738089294	9.484210579	1	3	3	Guided	Linear	1	1	Desktop	Understanding
 P65	VISXAI	Tool	Deconstructing BERT	model	11.38242266	-22.82530442	1	1	2	Open Ended	Linear	1	3	Desktop	Diagnosis
 P66	VISXAI	Interactive Article	Analyzing the Design Space for Visualizing Neural Attention in Text Classification	model	12.28442499	-22.62356225	1	2	2	Open Ended	Linear	1	3	Desktop	Diagnosis
 P67	VISXAI	Tool	What is feature visualisation	model	11.2380316	-20.40582696	1	1	2	Open Ended	Linear	1	1	Desktop	Understanding
@@ -54,7 +54,7 @@ R03	VISXAI	Guidelines	A Visual Introduction to Graphical Data Representations	mo
 P59	VISXAI	Article	Machine Learning Explanations with Topological Data Analysis	model	9.201499195	6.435161202	1	2	1	Guided	Linear	1	2	Multiple	Understanding
 P14	GOOGLE	Tool	Quick Draw	model	-10.29762533	23.78666839	2	4	3	Guided	Iterative	1	2	Multiple	Understanding
 P15	GOOGLE	Tool	Sketch-RNN Demos	model	-9.551030903	23.02606544	1	3	3	Open Ended	Iterative	1	2	Multiple	Understanding
-P16	GOOGLE	Tool	Scrying Pen	model	-8.807733326	22.30653533	1	3	0	Open Ended	Iterative	1	2	Multiple	Understanding
+P16	GOOGLE	Tool	Scrying Pen	model	-8.807733326	22.30653533	1	3	1	Open Ended	Iterative	1	2	Multiple	Understanding
 P18	NONE	Digital Logbook	Public by Default	platform	-0.6131115245	17.48155555	1	3	4	Open Ended	Iterative	1	2	Multiple	Understanding
 P24	NONE	Tool	Techable Machine	platform	-22.50513151	-9.886511238	2	3	1	Guided	Iterative	1	1	Multiple	Understanding
 P26	NONE	Guidelines	Machine Learning for Artists	platform	13.42565844	18.43393478	1	2	1	Guided	Iterative	1	1	Multiple	Understanding
@@ -68,7 +68,7 @@ P31	NONE	Exhibition	Anatomy of an AI System	platform	-26.12005117	6.940588562	1	
 P39	VISAP	Exhibition	Decomposition of Human Portraits	object	-25.35510519	7.987677186	1	2	1	Open Ended	Iterative	0	1	Exhibition	Telling
 P42	VISXAI	Interactive Article	Forma Fluens	model	16.05130312	18.64949569	3	5	1	Guided	Linear	1	1	Multiple	Understanding
 P32	NONE	Digital Logbook	Deepfake Lab	platform	-8.571471004	12.68564662	1	3	3	Guided	Iterative	1	2	Multiple	Understanding
-P34	NONE	Scrollytelling Story	IAQOS	platform	-12.02791574	6.859681218	1	0	1	Guided	Iterative	0	2	Multiple	Understanding
+P34	NONE	Scrollytelling Story	IAQOS	platform	-12.02791574	6.859681218	1	1	1	Guided	Iterative	0	2	Multiple	Understanding
 P21	NONE	Research Report	Algoglitch	platform	-23.27129629	5.323290913	1	2	2	Open Ended	Iterative	0	1	Multiple	Telling
 P38	VISAP	Exhibition	Artificial Senses	object	-24.06261328	6.220296948	1	2	2	Open Ended	Iterative	0	1	Multiple	Telling
 R01	CHI	Guidelines	Researching AI Legibility Through Design	theory	-18.03418043	-11.3408598	1	1	2	-	-	1	1	Multiple	Understanding
