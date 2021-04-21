@@ -179,18 +179,11 @@ let data = d3.tsv("data/glyphs.tsv").then(function (data) {
     .selectAll("g")
     .data(dataFixed);
 
-    svg.append("text")
-.attr("x", 10)
-.attr("y", 10)
-.attr("text", "ciao");
-
-
   g = g
     .enter()
     .append("g")
     .classed("glyph", true)
     .attr("transform", (d) => `translate(${d.x},${d.y})`);
-
 
 
   g.append("rect")
